@@ -1,315 +1,156 @@
-================================================================
-  COURSESYNC — PROJECT DOCUMENTATION
-  Developer  : Aman Choudhary (GitHub: Omtgod)
-  Last Updated: April 2026
-================================================================
+<div align="center">
 
-WEBSITE NAME
-------------
-  CourseSync https://bcatrackerbyomt.netlify.app/
-  (Previously known as: Study Tracker / BCA Tracker)
+<h1>
+  <img src="https://img.shields.io/badge/-%F0%9F%93%9A-white?style=flat" />
+  CourseSync
+</h1>
 
-WHAT IS THIS PROJECT?
-----------------------
-  CourseSync is a web-based Syllabus Tracker built for students.
-  On this platform, students can select their university, course,
-  and semester, then track their syllabus topic by topic.
-  Each topic can be marked as complete, personal notes can be
-  written, YouTube or PDF links can be saved, and overall
-  study progress can be monitored through an insights dashboard.
+<p><strong>A smart syllabus tracker for Indian university students.</strong><br/>
+Track your topics, save notes, monitor progress — all in one place.</p>
 
-TECHNOLOGIES USED
------------------
-  - HTML5                  (Structure)
-  - CSS3 / Vanilla CSS     (Dark glassmorphism design)
-  - JavaScript (Vanilla)   (No frameworks used)
-  - Firebase Firestore     (Global admin resources — YouTube/PDF links)
-  - LocalStorage           (User data, progress, notes — offline-first)
-  - Chart.js               (Doughnut progress chart on dashboard)
-  - Font Awesome 6         (Icons throughout the UI)
-  - Google Fonts           (Outfit + JetBrains Mono)
+<a href="https://bcatrackerbyomt.netlify.app/">
+  <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Website-10b981?style=for-the-badge&logoColor=white" />
+</a>
+&nbsp;
+<img src="https://img.shields.io/badge/Status-Active-10b981?style=for-the-badge" />
+&nbsp;
+<img src="https://img.shields.io/badge/Platform-Web-6366f1?style=for-the-badge" />
 
-================================================================
-  FEATURES BUILT SO FAR
-================================================================
+<br/><br/>
 
-1. USER AUTHENTICATION (Login / Sign Up)
-   ----------------------------------------
-   - Username and password based local authentication system.
-   - Supports both Sign Up and Login flows.
-   - User credentials are stored securely in localStorage.
-   - Old "BCA Tracker" user data is automatically migrated to
-     the new CourseSync storage format on first login.
+</div>
 
-2. UNIVERSITY / COURSE SELECTION SYSTEM  [NEW — April 2026]
-   -----------------------------------------------------------
-   - After logging in, the user first selects their University.
-   - Then the available Courses within that university are shown.
-   - Currently available: Ranchi University > B.Sc. (CA).
-   - Additional universities and courses can be added in the
-     future without any core code changes — just update data.js.
-   - "More Universities / More Courses — Coming Soon" placeholder
-     cards are shown in the selector grids.
-   - A "Switch Course" button allows the user to change their
-     selection at any time from the sidebar.
+---
 
-3. SETUP WIZARD
-   ------------
-   - Shown the first time a user logs into a new course.
-   - The user selects their active semester.
-   - Optional subjects (GE, AECC electives) can be chosen.
-   - Core course subjects are automatically enrolled.
-   - The wizard displays context info — selected University & Course.
+## 🌐 Live Website
 
-4. SYLLABUS DATA STRUCTURE  [RESTRUCTURED — April 2026]
-   ------------------------------------------------------
-   Navigation Hierarchy:
-     University --> Course --> Semester --> Subject --> Topics
+> **[https://bcatrackerbyomt.netlify.app/](https://bcatrackerbyomt.netlify.app/)**
 
-   File: data.js
-   Data Format:
-     universitiesData[
-       {
-         id, name, shortName, location,
-         courses: [
-           {
-             id, name, fullName, duration,
-             semesters: [
-               {
-                 semester,
-                 courses: [ { code, name, topics: [...] } ]
-               }
-             ]
-           }
-         ]
-       }
-     ]
+No installation needed. Just open the link, create a free account, and start tracking your syllabus instantly.
 
-   Ranchi University — B.Sc. (CA) currently contains:
-     - Semester I   : C1 (C/C++), C2 (CSA), AECC-1, GE-1 options
-     - Semester II  : C3 (Java), C4 (Discrete Structures), AECC-2, GE-2
-     - Semester III : C5 (Data Structures), C6 (OS), C7 (Networks), GE-3
-     - Semester IV  : C8 (DAA), C9 (Software Engg.), C10 (DBMS), GE-4
-     - Semester V   : C11 (Internet Technology), C12 (Theory of Computation)
-     - Semester VI  : C13 (Artificial Intelligence), C14 (Computer Graphics)
+---
 
-5. TOPIC PROGRESS TRACKING
-   ------------------------
-   - Each topic has a checkbox next to it.
-   - Checking a topic marks it as "completed" with a strikethrough.
-   - A progress counter (e.g. 4/11) is shown in each subject card.
-   - Data is saved to localStorage — persists after page close.
-   - Previously completed topics are remembered after refresh.
+## 📖 What is CourseSync?
 
-6. PERSONAL NOTES SYSTEM
-   ----------------------
-   - A Notes modal opens for every individual topic.
-   - Users can save a personal YouTube or PDF link for that topic.
-   - A personal text note can also be written.
-   - If a note or link has been saved, the note button turns gold
-     as a visual indicator.
-   - Clicking the link icon opens the saved resource directly.
+**CourseSync** is a free, web-based academic syllabus tracker designed specifically for Indian university students. It helps you:
 
-7. ADMIN GLOBAL RESOURCES (Firebase Integration)
-   -----------------------------------------------
-   - A separate Admin Panel allows the admin to set YouTube links
-     and PDF links globally for any topic in the syllabus.
-   - These links are stored in Firebase Firestore.
-   - When a student opens the app, global resources are loaded
-     automatically.
-   - The student's Notes modal shows an "Official Reference"
-     section with the admin-provided link for that topic.
+- Navigate your syllabus — semester by semester, subject by subject
+- **Check off topics** as you study them and watch your progress grow
+- **Save personal notes** and reference links (YouTube, PDFs) for each topic
+- Stay motivated with a **study streak counter** and **activity heatmap**
+- Focus better with a built-in **Pomodoro timer**
+- Get an overview of everything on the **Insights Dashboard**
 
-8. INSIGHTS DASHBOARD
-   -------------------
-   - Overall syllabus completion percentage displayed as a
-     Doughnut chart.
-   - Exam countdown: user can set their exam date and see
-     how many days are left.
-   - Total lifetime focus time tracked (accumulated from
-     Pomodoro sessions).
-   - Total notes count displayed.
-   - Activity Heatmap — a GitLab-style grid showing daily
-     study activity for the last 91 days.
-   - "Up Next" section — shows the top 3 incomplete topics
-     across all selected subjects with quick jump links.
+CourseSync is built to work **offline-first** — your progress is saved locally in your browser, so you never lose your data.
 
-9. POMODORO FOCUS TIMER
-   ----------------------
-   - A built-in study session timer (default 25 minutes,
-     fully customizable by the user).
-   - Start / Pause / Reset controls.
-   - A mini countdown is shown in the header bar during a session.
-   - On completion: a sound alert plays and focus time is recorded.
-   - Completed focus time is accumulated and shown on the dashboard.
+---
 
-10. STUDY STREAK SYSTEM
-    --------------------
-    - A "Day Streak" counter is displayed in the sidebar.
-    - The streak increments for every day the user studies.
-    - Missing a day resets the streak back to zero.
+## ✨ Key Features
 
-11. THEME TOGGLE (Dark / Light Mode)
-    -----------------------------------
-    - Supports both Dark mode (default) and Light mode.
-    - Monochrome silver/charcoal design in both themes.
-    - Theme preference is saved to localStorage.
+| Feature | Description |
+|---|---|
+| 🏛️ **University Selector** | Choose your university, then your course |
+| 📚 **Full Syllabus View** | All semesters, subjects, and topics in one place |
+| ✅ **Topic Progress Tracking** | Check off topics as you complete them |
+| 📝 **Personal Notes** | Save YouTube links, PDFs, and personal notes per topic |
+| 📊 **Insights Dashboard** | Completion chart, exam countdown, activity heatmap |
+| ⏱️ **Pomodoro Timer** | Built-in focus timer that tracks your study hours |
+| 🔥 **Study Streak** | Daily streak counter to keep you consistent |
+| 🌙 **Dark / Light Mode** | Beautiful dark theme with light mode option |
+| 🔒 **Login System** | Secure per-user profiles — your data stays yours |
+| 🌍 **Admin Resources** | Official YouTube/PDF links set by admin for each topic |
 
-12. UI / DESIGN FEATURES
-    ----------------------
-    - Dark glassmorphism aesthetic with frosted panels.
-    - Sharp corners with neon silver accent highlights.
-    - Web Audio API powered UI sound effects:
-        hover, click, task-check, task-uncheck sounds.
-    - Smooth animated transitions and hover effects.
-    - Responsive layout — works on both mobile and desktop.
-    - Sidebar breadcrumb: always shows "RU > B.Sc. (CA)".
-    - Premium typography: Outfit + JetBrains Mono from Google Fonts.
+---
 
-13. PER-COURSE DATA ISOLATION  [NEW — April 2026]
-    -------------------------------------------------
-    - Each user's progress data is now stored separately per
-      university and per course combination.
-    - Storage key format:
-        coursesync_<username>_<universityId>_<courseId>
-    - This means the same user can maintain separate progress
-      records for different courses in the future.
+## 🏛️ Supported Universities & Courses
 
-14. ADMIN PANEL (admin.html + admin.js)
-    ------------------------------------
-    - A separate admin page exists for resource management.
-    - The admin can set topic-level YouTube and PDF links.
-    - These links appear globally for all students.
-    - Powered by Firebase Firestore.
+| University | Courses Available |
+|---|---|
+| **Ranchi University** | B.Sc. (Computer Application) — All 6 Semesters |
+| More universities | *Coming soon...* |
 
-================================================================
-  FILE STRUCTURE
-================================================================
+> **Want your university added?** Feel free to reach out — I'm actively expanding the platform.
 
-  bca_tracker/
-  └── app/
-      ├── index.html          — Main app (login + dashboard + syllabus)
-      ├── style.css           — All CSS styling (dark theme, glassmorphism)
-      ├── app.js              — Core JavaScript logic
-      ├── data.js             — All syllabus data (universitiesData hierarchy)
-      ├── firebase-config.js  — Firebase SDK initialization
-      ├── admin.html          — Admin panel UI
-      ├── admin.js            — Admin panel logic
-      └── PROJECT_INFO.txt    — This file. Project documentation.
+---
 
-================================================================
-  FUTURE PLANS
-================================================================
+## 🗺️ How It Works
 
-SHORT TERM (Priority):
------------------------
-  [ ] Add more universities:
-      - Vinoba Bhave University (VBU), Hazaribagh
-      - Sido Kanhu Murmu University (SKMU), Dumka
-      - Jharkhand Raksha Shakti University
-      - Nilamber Pitamber University
-      - and more...
+```
+Sign Up → Select University → Select Course → Setup Wizard → Dashboard
+```
 
-  [ ] Add more courses under Ranchi University:
-      - BCA (Bachelor of Computer Application)
-      - B.Sc. (IT)
-      - B.Com (Computer Application)
-      - MCA (Master of Computer Application)
+1. **Create a free account** with a username and password
+2. **Select your university** (e.g. Ranchi University)
+3. **Select your course** (e.g. B.Sc. CA)
+4. **Complete the setup wizard** — choose your semester and optional subjects
+5. **Start tracking!** — check off topics, save notes, use the timer
 
-  [ ] Upgrade Admin Panel:
-      - Allow setting resources at the University and Course level.
-      - Add topic search/filter functionality.
+---
 
-  [ ] Display topic descriptions in the syllabus view:
-      - The "desc" field already exists in the data — just render it
-        as an expandable section under each topic title.
+## 🛠️ Built With
 
-  [ ] Exam Schedule feature:
-      - Allow saving multiple exam dates per semester.
-      - Show a multi-exam countdown on the dashboard.
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)
+![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)
 
-MEDIUM TERM:
---------------
-  [ ] Firebase Authentication:
-      - Replace localStorage password storage with Firebase Auth
-        (email/password) for proper security.
+- **Frontend:** Vanilla HTML, CSS, JavaScript (no frameworks)
+- **Database:** Firebase Firestore (global admin resources)
+- **Storage:** LocalStorage (offline-first user data)
+- **Hosting:** Netlify
+- **Charts:** Chart.js
+- **Icons:** Font Awesome 6
+- **Fonts:** Google Fonts (Outfit + JetBrains Mono)
 
-  [ ] Cloud Sync:
-      - Sync user progress to Firebase Firestore so it is
-        accessible across multiple devices.
+---
 
-  [ ] Topic Search Bar:
-      - Allow students to search for any topic or subject by name
-        across all semesters.
+## 🔮 Coming Soon
 
-  [ ] Export Notes:
-      - Allow users to export all their notes as a PDF or
-        plain text file.
+- [ ] More Indian universities (VBU, SKMU, NPU...)
+- [ ] More courses under Ranchi University (BCA, MCA, B.Sc. IT...)
+- [ ] Cloud sync across devices (Firebase Auth)
+- [ ] Topic search bar
+- [ ] Export notes as PDF
+- [ ] Study planner & reminders
+- [ ] Progressive Web App (installable on mobile)
+- [ ] AI study assistant (Gemini-based chatbot)
+- [ ] Practice questions & self-assessment quizzes
+- [ ] National-level platform covering all Indian state universities
 
-  [ ] Study Planner:
-      - Let students create a weekly study schedule.
-      - Choose which topics to study on which days.
-      - Daily study reminders.
+---
 
-  [ ] Progressive Web App (PWA):
-      - Make the app installable on mobile and desktop.
-      - Add push notification support for study reminders.
+## 📸 Screenshots
 
-LONG TERM (Big Vision):
-------------------------
-  [ ] National-level platform:
-      - Cover syllabus for universities across all Indian states.
-      - Support both CBCS and NEP 2020 curriculum formats.
+> Visit the live site to explore the full experience:
+> **[https://bcatrackerbyomt.netlify.app/](https://bcatrackerbyomt.netlify.app/)**
 
-  [ ] Community Features:
-      - Students can share notes publicly.
-      - Topic-level comment/discussion section.
+---
 
-  [ ] AI Study Assistant:
-      - A RAG-based chatbot that answers questions about syllabus
-        topics using the actual course material.
-      - A "Shadow" AI persona (Gemini-based) has already been
-        explored in a separate prototype.
+## 👤 Developer
 
-  [ ] Practice Questions & Self-Assessment:
-      - MCQ and short questions for each topic.
-      - Auto-graded self-assessments.
+<div align="center">
 
-  [ ] Leaderboard & Gamification:
-      - Compare progress at college or university level.
-      - Badges and achievement system to motivate study.
+**OmtGod**
 
-================================================================
-  KNOWN ISSUES & CURRENT LIMITATIONS
-================================================================
+[![GitHub](https://img.shields.io/badge/GitHub-Omtgod-181717?style=flat-square&logo=github)](https://github.com/Omtgod)
+[![Instagram](https://img.shields.io/badge/Instagram-omt__god-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/omt_god)
 
-  - Only one university and one course is currently available
-    (Ranchi University / B.Sc. CA). Adding new data requires
-    manually editing data.js.
+*Built with ❤️ for students of Ranchi University*
+*and with the vision to help every Indian university student.*
 
-  - Passwords are stored as plain text in localStorage.
-    This will be resolved when Firebase Authentication is
-    implemented.
+</div>
 
-  - If the Firebase connection fails, global admin resources
-    will not load. The app handles this gracefully by falling
-    back to local data with a silent console warning.
+---
 
-  - Login state persists across browser refreshes by design
-    (user is stored in localStorage). This is intended behavior.
+## ⭐ Support the Project
 
-  - The app is entirely client-side (no backend server).
-    This is intentional for the current offline-first approach.
+If CourseSync helps you study better, consider giving it a ⭐ star on GitHub!
+It helps the project grow and reach more students.
 
-================================================================
-  DEVELOPER INFO
-================================================================
+---
 
-  Developer   : Aman Choudhary (OmtGod)
-  GitHub      : https://github.com/Omtgod
-  Instagram   : https://www.instagram.com/omt_god
-
-  Built with love for students of Ranchi University
-  and with the vision to expand to all Indian universities.
-
-================================================================
+<div align="center">
+  <sub>© 2026 CourseSync by Omt · Free for all students</sub>
+</div>
